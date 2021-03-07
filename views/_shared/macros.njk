@@ -1,0 +1,97 @@
+{% macro getTime(time1, time2) %}
+    {% if time1 == time2 %}
+        24h
+    {% else %}
+        {{ time1 }} - {{ time2 }}
+    {% endif %}
+{% endmacro %}
+
+{% macro getIcon(boolean) %}
+    {% if boolean %}
+        <span class="icon has-text-success">
+            <i class="fas fa-lg fa-check-circle"></i>
+        </span>
+    {% else %}
+        <span class="icon has-text-danger">
+            <i class="fas fa-lg fa-times-circle"></i>
+        </span>
+    {% endif %}
+{% endmacro %}
+
+{% macro getTag(variable, style) %}
+    {% if variable != '' %}
+        <span class="tag {{ style }}">
+            {{ variable }}
+        </span>
+    {% else %}
+        {{ variable }}
+    {% endif %}
+{% endmacro %}
+
+{% macro getTagInterval(interval) %}
+    {% if interval == "daily" %}
+        {% set style = "is-primary" %}
+        {% elif interval == "weekly" %}
+        {% set style = "interval-weekly" %}
+        {% elif interval == "monthly" %}
+        {% set style = "interval-monthly" %}
+        {% elif interval == "yearly" %}
+        {% set style = "interval-yearly" %}
+    {% else %}
+        {% set style = "is-info" %}
+    {% endif %}
+    {{ getTag(interval, style) }}
+{% endmacro %}
+
+{% macro getTagPolicyStatus(status) %}
+    {% if status %}
+        {{ getTag("Active", "is-success is-rounded") }}
+    {% else %}
+        {{ getTag("Inactive", "is-danger is-rounded") }}
+    {% endif %}
+{% endmacro %}
+
+{% macro getTagBcType(bcType) %}
+    {% if bcType == 'public' %}
+        <span class="tag is-neutral">
+            <i class="fas fa-lg fa-lock-open inline-icon"></i>
+            {{ bcType }}
+        </span>
+        {% elif bcType == 'private' %}
+        <span class="tag is-neutral">
+            <i class="fas fa-lg fa-lock inline-icon"></i>
+            {{ bcType }}
+        </span>
+        {% elif bcType == 'indifferent' %}
+        <span class="tag is-neutral">
+            {{ bcType }}
+        </span>
+    {% else %}
+        {{ bcType }}
+    {% endif %}
+{% endmacro %}
+
+{% macro getTagCostProfile(costProfile) %}
+    {% if costProfile == 'performance' %}
+        <span class="tag is-neutral">
+            <i class="fas fa-lg fa-tachometer-alt inline-icon"></i>
+            perf.
+        </span>
+        {% elif costProfile == 'economic' %}
+        <span class="tag is-neutral">
+            <i class="fas fa-lg fa-euro-sign inline-icon"></i>
+            econ.
+        </span>
+    {% else %}
+        {{ costProfile }}
+    {% endif %}
+{% endmacro %}
+
+{% macro getPreferredBCTags(bcArray) %}
+    {% for bc in bcArray %}
+        <span class="span-bc span-{{ bc }}">
+            {{ bc }}
+        </span>
+    {% else %}
+    {% endfor %}
+{% endmacro %}

@@ -1,0 +1,133 @@
+{% extends "_shared/layout.njk" %}
+{% import "_shared/macros.njk" as macros %}
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="policy-management columns is-vcentered is-multiline">
+                    <div class="column is-full">
+                        <h2 class="title is-4">
+                            Policy Management
+                        </h2>
+                    </div>
+                    <div id="error" class="notification is-danger">
+                    </div>
+                    <div class="column is-four-fifths">
+                    </div>
+                    <div class="column is-one-fifth">
+                        <a class="button is-link is-pulled-right"
+                           href="/policy{{ '?username=' + username if username }}">Create new Policy</a>
+                    </div>
+                    <div class="column is-full" id="table-div">
+                        <table class="table is-striped is-narrow is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th><abbr title="Number">No.</abbr></th>
+                                <th>Active</th>
+                                <th>Username</th>
+                                <th><abbr title="Preferred Blockchains">BC</abbr></th>
+                                <th><abbr title="Blockchain Type">Type</abbr></th>
+                                <th><abbr title="Max. Cost Threshold">Cost</abbr></th>
+                                <th><abbr title="Cost Threshold Currency">Currency</abbr></th>
+                                <th><abbr title="Interval For Cost Threshold">Interv.</abbr></th>
+                                <th><abbr title="Transactions Per Second">TPS</abbr></th>
+                                <th><abbr title="Block Time">Time</abbr></th>
+                                <th><abbr title="Transaction Size">Size</abbr></th>
+                                <th><abbr title="Smart Contract">SM</abbr></th>
+                                <th><abbr title="Turing Complete">Compl.</abbr></th>
+                                <th><abbr title="Popularity">Pop</abbr></th>
+                                <th><abbr title="Allow Split Transactions">Split</abbr></th>
+                                <th><abbr title="Cost Profile">Profile</abbr></th>
+                                <th><abbr title="Time Frame">Time</abbr></th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for policy in policies %}
+                                <tr class="policy-info">
+                                    <th>{{ loop.index }}</th>
+                                    <td class="policy-active" id="active-{{ policy._id }}">{{ macros.getTagPolicyStatus(policy.isActive) }}</td>
+                                    <td class="policy-username">{{ policy.username }}</td>
+                                    <td class="policy-preferred-bc">{{ macros.getPreferredBCTags(policy.preferredBC) }}</td>
+                                    <td class="policy-bc-type">{{ macros.getTagBcType(policy.bcType) }}</td>
+                                    <td class="policy-cost">{{ policy.cost }}</td>
+                                    <td class="policy-currency">{{ policy.currency }}</td>
+                                    <td class="policy-interval">{{ macros.getTagInterval(policy.interval) }}</td>
+                                    <td class="policy-bc-tps">{{ policy.bcTps }}</td>
+                                    <td class="policy-block-time">{{ policy.bcBlockTime }}</td>
+                                    <td class="policy-bc-data-size">{{ policy.bcDataSize }}</td>
+                                    <td class="policy-bc-smart-contract">{{ macros.getIcon(policy.bcSmartContract) }}</td>
+                                    <td class="policy-bc-touring-complete">{{ macros.getIcon(policy.bcTuringComplete) }}</td>
+                                    <td class="policy-bc-popularity">{{ policy.popularity }}</td>
+                                    <td class="policy-split">{{ macros.getIcon(policy.split) }}</td>
+                                    <td class="policy-cost-profile" title="{{ policy.costProfile }}">{{ macros.getTagCostProfile(policy.costProfile) }}
+                                    </td>
+                                    <td class="policy-time-frame">{{ macros.getTime(policy.timeFrameStart, policy.timeFrameEnd) }}</td>
+                                    <td class="policy-edit">
+                                        <a class="button is-link table-button" href="/policy?id={{ policy._id }}">Edit
+                                            Policy</a>
+                                    </td>
+                                    <td class="policy-delete">
+                                        <button class="button is-danger delete-button table-button"
+                                                id="delete-policy-{{ policy._id }}" value="{{ policy._id }}" {{ 'disabled' if policy.interval == 'default' }}>Delete
+                                            Policy
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>noData</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="user-stats columns is-vcentered is-multiline">
+                    <div class="column is-full">
+                        <h2 class="title is-4">
+                            Stats for <span id="username-stats">{{ username }}</span>
+                        </h2>
+                    </div>
+                    <div class="column is-one-third">
+                        <h2 class="title is-5">
+                            Costs:
+                        </h2>
+                        <canvas id="costsPerIntervalChart"></canvas>
+                    </div>
+                    <div class="column is-one-third">
+                        <h2 class="title is-5">
+                            Policy Costs:
+                        </h2>
+                        <canvas id="costsPerPolicyChart"></canvas>
+                    </div>
+                    <div class="column is-one-third">
+                        <h2 class="title is-5">
+                            Policy Transactions:
+                        </h2>
+                        <canvas id="transactionsPerPolicyChart"></canvas>
+                    </div>
+                    <div class="column is-one-half">
+                        <h2 class="title is-5">
+                            Blockchain Transactions:
+                        </h2>
+                        <canvas id="transactionsPerBlockchainChart"></canvas>
+                    </div>
+                    <div class="column is-one-half">
+                        <h2 class="title is-5">
+                            Blockchain per Interval:
+                        </h2>
+                        <canvas id="blockchainsPerIntervalChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block additionalJS %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="../js/policy-list.js"></script>
+    <script src="../js/charts.js"></script>
+{% endblock %}

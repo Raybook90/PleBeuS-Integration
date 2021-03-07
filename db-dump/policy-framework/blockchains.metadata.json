@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"policy-framework.blockchains"},{"v":2,"unique":true,"key":{"nameShort":1},"name":"nameShort","ns":"policy-framework.blockchains","background":true},{"v":2,"unique":true,"key":{"name":1},"name":"name","ns":"policy-framework.blockchains","background":true}],"uuid":"6a5a57e87801468c8faab55a58139b16"}

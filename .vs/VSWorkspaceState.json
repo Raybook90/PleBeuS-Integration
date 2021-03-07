@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\business-logic",
+    "\\controller",
+    "\\public",
+    "\\public\\js",
+    "\\repositories",
+    "\\routes",
+    "\\util",
+    "\\views",
+    "\\views\\_shared"
+  ],
+  "SelectedNode": "\\api\\bc-fees.js",
+  "PreviewInSolutionExplorer": false
+}

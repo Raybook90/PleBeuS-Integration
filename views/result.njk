@@ -1,0 +1,27 @@
+{% extends "_shared/layout.njk" %}
+{% block content %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column"></div>
+                <div class="column">
+                    <h1 class="title">You chose the following policy {{ policy.username }}: </h1>
+                    <p>Your preferred Blockchains: {{ policy.preferredBC }} </p>
+                    <p>Blockchain Type: {{ policy.bcType }} </p>
+                    <p>Max. Cost: {{ policy.cost }} {{ policy.currency }} {{ policy.interval }} </p>
+                    <p>Min. Transactions per Second: {{ policy.bcTps }} </p>
+                    <p>Min. Block Size: {{ policy.bcBlockSize }} </p>
+                    <p>Max. Block Time: {{ policy.bcBlockTime }} </p>
+                    <p>Min. Data Size: {{ policy.bcDataSize }} </p>
+                    <p>Smart contract support: {{ policy.bcTuringComplete }} </p>
+                    <div class="control">
+                        <a class="button is-link" href="/">OK</a>
+                    </div>
+                </div>
+                <div class="column"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

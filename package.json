@@ -1,0 +1,31 @@
+{
+  "name": "bc-policy-selection",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon --inspect=3001 ./bin/www",
+    "test": "mocha --timeout 5000 -R spec --recursive test --exit"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.19",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "node-sass-middleware": "0.11.0",
+    "node-xlsx": "^0.14.1",
+    "nunjucks": "^3.1.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "node-fetch": "2.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
+  }
+}

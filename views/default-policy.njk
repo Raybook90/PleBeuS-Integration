@@ -1,0 +1,200 @@
+{% extends "_shared/policy-layout.njk" %}
+{% block policyFormContent %}
+    <div id="preferred-bc-info" class="notification is-info">
+        Select A blockchain you want to use for your default policy.
+        A default policy acts as a fallback in case all other policies have reached their cost threshold
+        or there are no others available <br/>
+        <b>Note:</b> You cannot delete your default policy, but you can always edit it and choose
+        different parameters for your default policy.
+        <br/>
+        <br/>
+        Also select your preferred currency. Once chosen, it <b>cannot</b> be changed!
+    </div>
+    <div id="error" class="notification is-danger">
+    </div>
+    <div class="columns is-vcentered">
+        <div class="column"></div>
+        <div class="column is-two-thirds">
+            <form id="policy-form">
+                <div class="field">
+                    <label class="label" for="username">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" id="username" name="username"
+                               value="{{ policy.username }}" {{ "disabled" if policy.username }}>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="preferredBC">Preferred Blockchains</label>
+                    <div class="control">
+                        <div>
+                            <select id="preferredBC" name="preferredBC" multiple="multiple">
+                                {% for blockchain in blockchains %}
+                                    <option value={{ blockchain.nameShort }} {{ "selected" if policy.preferredBC.includes(blockchain.nameShort) }}>
+                                        {{ blockchain.name }}
+                                    </option>
+                                {% else %}
+                                    <option>
+                                        NoData
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Blockchain Type</label>
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="bcType"
+                                   value="public" {{ "checked" if policy.bcType == "public" }}>
+                            Public
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="bcType"
+                                   value="private" {{ "checked" if policy.bcType == "private" }}>
+                            Private
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="bcType"
+                                   value="indifferent" {{ "checked" if policy.bcType == "indifferent" }}>
+                            Indifferent
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="currency">Currency</label>
+                        <div class="select">
+                            <select id="currency" name="currency" {{ "disabled" if currency }}>
+                                <option value="CHF" {{ "selected" if currency == "CHF" }}>CHF
+                                </option>
+                                <option value="EUR" {{ "selected" if currency == "EUR" }}>EUR
+                                </option>
+                                <option value="USD" {{ "selected" if currency == "USD" }}>USD
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="bcTps">Min. Transactions Per Second</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="bcTps" name="bcTps">
+                                {% for tps in choosableParams.tps %}
+                                    <option value="{{ tps }}" {{ "selected" if policy.bcTps == tps }}>
+                                        {{ tps }}
+                                    </option>
+                                {% else %}
+                                    <option>
+                                        NoData
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="bcBlockTime">Max. Block Time (in Seconds)</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="bcBlockTime" name="bcBlockTime">
+                                {% for blockTime in choosableParams.blockTime %}
+                                    <option value="{{ blockTime }}"
+                                            {% if policy.bcBlockTime %}
+                                                {% if policy.bcBlockTime == blockTime %}
+                                                    {{ "selected" }}
+                                                {% endif %}
+                                            {% else %}
+                                                {% if choosableParams.maxBlockTime == blockTime %}
+                                                    {{ "selected" }}
+                                                {% endif %}
+                                            {% endif %}
+                                    >
+                                        {{ blockTime }}
+                                    </option>
+                                {% else %}
+                                    <option>
+                                        NoData
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="bcDataSize">Min. Data Size (in Bytes)</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="bcDataSize" name="bcDataSize">
+                                {% for maxTrxSize in choosableParams.maxTrxSize %}
+                                    <option value="{{ maxTrxSize }}" {{ "selected" if policy.bcDataSize == maxTrxSize }}>
+                                        {{ maxTrxSize }}
+                                    </option>
+                                {% else %}
+                                    <option>
+                                        NoData
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Turing Completeness</label>
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="bcTuringComplete"
+                                   value="true" {{ "checked" if policy.bcTuringComplete }}>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="bcTuringComplete"
+                                   value="false" {{ "checked" if not policy.bcTuringComplete }}>
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Allow Split Transations</label>
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="split"
+                                   value="true" {{ "checked" if policy.split }}>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="split"
+                                   value="false" {{ "checked" if not policy.split }}>
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="costProfile">Cost Profile</label>
+                        <div class="select">
+                            <select id="costProfile" name="costProfile">
+                                <option value="performance" {{ "selected" if policy.costProfile == "performance" }}>
+                                    performance
+                                </option>
+                                <option value="economic" {{ "selected" if policy.costProfile == "economic" }}>
+                                    economic
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="_id" value="{{ policy._id }}">
+                <input type="hidden" name="interval" value="default">
+                <div class="field">
+                    <div class="control">
+                        <button type="submit" id="submit-policy-form"
+                                class="button is-link is-pulled-right">Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

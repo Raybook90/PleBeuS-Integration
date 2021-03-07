@@ -1,0 +1,12 @@
+{% extends "_shared/layout.njk" %}
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div id="server-error" class="notification is-danger">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

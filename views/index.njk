@@ -1,0 +1,54 @@
+{% extends "_shared/layout.njk" %}
+{% block content %}
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="title is-5">
+                    Policy Management
+                </h2>
+                <div id="username-info" class="notification is-info">
+                    Enter the user for which you want to manage the Policies or create a new user
+                </div>
+                <div id="username-error" class="notification is-danger">
+                </div>
+                <div class="columns is-vcentered">
+                    <div class="column"></div>
+                    <div class="column">
+                        <form id="username-form">
+                            <div class="field">
+                                <label class="label" for="username">Username</label>
+                                <input class="input" type="text" id="search-username" name="username">
+                            </div>
+                            <div class="field">
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="control">
+                                            <a type="button" id="submit-new-username-form"
+                                               class="button">Create new User
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="column">
+                                        <div class="control">
+                                            <button type="submit" id="submit-username-form"
+                                                    class="button is-link is-pulled-right">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="column"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block additionalJS %}
+    <script src="/js/username-form.js"></script>
+{% endblock %}
