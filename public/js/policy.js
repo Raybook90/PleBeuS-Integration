@@ -113,3 +113,49 @@ function toJSON(form) {
 
     return obj;
 }
+
+//Rati ML button in policy 
+
+
+document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
+    var features = document.getElementsByClassName('extended-form-rati');
+    
+    var isHidden = true;
+    for (let i = 0; i < features.length; ++i) {
+        if (features[i].style.display === "none") {
+            features[i].style.display = "block";
+            var e = features[i].querySelectorAll(".label");
+            e[0].style.color = "green";
+
+            isHidden = false;
+            
+
+        } else {
+            features[i].style.display = "none";
+            isHidden = true;
+        }      
+    }
+
+    if(isHidden){
+        
+        document.getElementsByClassName('custId').value = "0";
+        console.log(document.getElementsByClassName('custId').value);
+        /*var r = document.querySelectorAll(".test-radio-rati input[name='bcSmartContract']");
+        console.log(r);
+
+        for(i=0; i<bcSmartContract.length; i++){
+            if(r[i].value === 'true'){
+                var elem = r[i];
+                elem.checked = true;
+            } 
+        }*/
+    }else{
+    
+     document.getElementsByClassName('custId').value = "1";
+     console.log(document.getElementsByClassName('custId').value);
+    }
+
+
+
+
+}, false);

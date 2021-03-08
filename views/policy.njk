@@ -19,6 +19,13 @@
                     </div>
                 </div>
                 <div class="field">
+                    <div class="control">
+                        <button type="button" id="test"
+                                class="extended-button-rati button is-link">Use ML selection algorithm
+                        </button>
+                    </div>
+                </div>
+                <div class="field">
                     <label class="label" for="preferredBC">Preferred Blockchains</label>
                     <div class="control">
                         <div>
@@ -163,9 +170,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field extended-form-rati">
                     <label class="label">Smart Contracts</label>
-                    <div class="control">
+                    <div class="control test-radio-rati">
                         <label class="radio">
                             <input type="radio" name="bcSmartContract"
                                    value="true" {{ "checked" if policy.bcSmartContract }}>
@@ -193,7 +200,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field extended-form-rati">
                     <div class="control">
                         <label class="label" for="popularity">Popularity</label>
                         <div class="select">
@@ -269,9 +276,18 @@
                         </button>
                     </div>
                 </div>
+
+
+                 <input type="hidden" class="custId" id="custId" name="custId" value="0">
             </form>
         </div>
     </div>
+
+    <style>
+        .extended-form-rati {
+            display: none;
+            }
+    </style>
 
 {% endblock %}
 
