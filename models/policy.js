@@ -37,7 +37,7 @@ const policySchema = new mongoose.Schema({
     bcDataSize: {
         type: Number,
     },
-    //Rati test
+    //Rati ML feature
     bcSmartContract:{
         type: Boolean,
         default: false,
@@ -46,7 +46,7 @@ const policySchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    //Rati test
+    //Rati ML feature 
     popularity: {
         type: String,
         enum: ['low', 'medium', 'high'],
@@ -68,7 +68,12 @@ const policySchema = new mongoose.Schema({
         type: String,
         enum: ['economic', 'performance'],
         default: 'economic',
-    }
+    },
+    //Rati ML feature
+    useMachineLearning: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const Policy = mongoose.model('Policy', policySchema);

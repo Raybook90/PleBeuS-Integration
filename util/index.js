@@ -23,6 +23,7 @@ function buildPolicy(requestBody = null, username) {
         policy.costProfile = '';
         policy.timeFrameStart = '00:00';
         policy.timeFrameEnd = '00:00';
+        policy.useMachineLearning = false;
     } else if (requestBody.interval === DEFAULT) {
         policy.username = requestBody.username;
         policy.preferredBC = requestBody.preferredBC || [];
@@ -37,6 +38,7 @@ function buildPolicy(requestBody = null, username) {
         policy.bcDataSize = parseInt(requestBody.bcDataSize, 10);
         policy.split = requestBody.split === 'true';
         policy.costProfile = requestBody.costProfile;
+        policy.useMachineLearning = requestBody.useMachineLearning === 'true';
         if (requestBody._id) {
             policy._id = requestBody._id;
         }
@@ -57,6 +59,7 @@ function buildPolicy(requestBody = null, username) {
         policy.costProfile = requestBody.costProfile;
         policy.timeFrameStart = requestBody.timeFrameStart;
         policy.timeFrameEnd = requestBody.timeFrameEnd;
+        policy.useMachineLearning = requestBody.useMachineLearning === 'true';
         if (requestBody._id) {
             policy._id = requestBody._id;
         }

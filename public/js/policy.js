@@ -114,7 +114,7 @@ function toJSON(form) {
     return obj;
 }
 
-//Rati ML button in policy 
+//Rati ML button in policy form
 
 
 document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
@@ -137,25 +137,12 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
     }
 
     if(isHidden){
-        
-        document.getElementsByClassName('custId').value = "0";
-        console.log(document.getElementsByClassName('custId').value);
-        /*var r = document.querySelectorAll(".test-radio-rati input[name='bcSmartContract']");
-        console.log(r);
-
-        for(i=0; i<bcSmartContract.length; i++){
-            if(r[i].value === 'true'){
-                var elem = r[i];
-                elem.checked = true;
-            } 
-        }*/
+        /*document.getElementsByClassName('custId').value = "false";*/
+        document.querySelector('input[name=useMachineLearning').value = "false";
+        console.log(document.querySelector('input[name=useMachineLearning').value);
     }else{
-    
-     document.getElementsByClassName('custId').value = "1";
-     console.log(document.getElementsByClassName('custId').value);
+        /*document.getElementsByClassName('custId').value = "true";*/
+        document.querySelector('input[name=useMachineLearning').value = "true";
+        console.log(document.querySelector('input[name=useMachineLearning').value);
     }
-
-
-
-
 }, false);
