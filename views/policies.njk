@@ -39,6 +39,7 @@
                                 <th><abbr title="Allow Split Transactions">Split</abbr></th>
                                 <th><abbr title="Cost Profile">Profile</abbr></th>
                                 <th><abbr title="Time Frame">Time</abbr></th>
+                                <th><abbr title="Use Machine Learning for Selection">Use ML</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -64,6 +65,7 @@
                                     <td class="policy-cost-profile" title="{{ policy.costProfile }}">{{ macros.getTagCostProfile(policy.costProfile) }}
                                     </td>
                                     <td class="policy-time-frame">{{ macros.getTime(policy.timeFrameStart, policy.timeFrameEnd) }}</td>
+                                    <td class="policy-use-ml">{{ macros.getIcon(policy.useMachineLearning) }}</td>
                                     <td class="policy-edit">
                                         <a class="button is-link table-button" href="/policy?id={{ policy._id }}">Edit
                                             Policy</a>
