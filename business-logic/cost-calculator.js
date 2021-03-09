@@ -37,7 +37,7 @@ async function calculateCostForBlockchain(bcKey, blockchainRates, profile = 'hig
         // cost per operation
         return {[bcKey]: 0.00001 * blockchainRates[bcKey]};
     }
-    //eos api is depreciated RATI
+    //eos api is deprecated RATI
     /*
     if (bcKey === constants.blockchains.EOS.nameShort) {
         const ramCost = await bcCosts.fetchRAMPriceInEOS();

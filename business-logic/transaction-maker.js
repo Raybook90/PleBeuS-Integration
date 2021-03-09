@@ -40,49 +40,68 @@ async function makeTransactions(policies, user, transactionData) {
     let previouslyActivePolicy;
     let viableBlockchains;
     let alreadyUsedBlockchainIndex = 0;
+    var prediction;
     const transactionInfo = [];
     let alreadyUsedBlockchains = [];
     for (let [index, cost] of sheetCosts.entries()) {
         currentlyActivePolicy = await policySelector.selectPolicy(policies, user);
         viableBlockchains = await blockchainSelector.selectBlockchainFromPolicy(currentlyActivePolicy);
-        console.log(viableBlockchains);
         let chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
-        //Test Rati
-        /*blockchainSelector.selectBlockchainWithMlFromPolicy(currentlyActivePolicy)*/
-        if (currentlyActivePolicy['split']) {
-            if (previouslyActivePolicy && !previouslyActivePolicy._id.equals(currentlyActivePolicy._id)) {
-                alreadyUsedBlockchains = [];
-                alreadyUsedBlockchainIndex = 0;
+        //Test Rati - Use Machine Learning to determine Blockchain
+        if(currentlyActivePolicy['useMachineLearning']){
+            prediction = await blockchainSelector.selectBlockchainWithMlFromPolicy(currentlyActivePolicy);
+            const data = transactionData.violations ? transactionData.violations[index].dataString : transactionData.dataString;
+            const dataHash = transactionData.violations ? transactionData.violations[index].dataHash : transactionData.dataHash;
+            const transaction = {
+                username: user.username,
+                blockchain: prediction.Prediction,
+                dataHash,
+                data,
+                policyId: currentlyActivePolicy._id,
+                costProfile: currentlyActivePolicy.costProfile,
+                interval: currentlyActivePolicy.interval
+            };
+            await TransactionRepository.createTransaction(transaction);
+            transactionInfo.push(transaction);
+            previouslyActivePolicy = currentlyActivePolicy;
+            console.log(prediction.Prediction);
+        } else{
+            // Use normal Selection algorithm if ML has not been chosen
+            if (currentlyActivePolicy['split']) {
+                if (previouslyActivePolicy && !previouslyActivePolicy._id.equals(currentlyActivePolicy._id)) {
+                    alreadyUsedBlockchains = [];
+                    alreadyUsedBlockchainIndex = 0;
+                }
+                chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
+                if (alreadyUsedBlockchainIndex >= alreadyUsedBlockchains.length - 1) {
+                    alreadyUsedBlockchainIndex = 0;
+                } else if (alreadyUsedBlockchains.length === viableBlockchains.length) {
+                    alreadyUsedBlockchainIndex = alreadyUsedBlockchainIndex + 1;
+                }
+                if (!alreadyUsedBlockchains.includes(chosenBlockchainKey)) {
+                    alreadyUsedBlockchains.push(chosenBlockchainKey);
+                }
+            } else {
+                chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
             }
-            chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
-            if (alreadyUsedBlockchainIndex >= alreadyUsedBlockchains.length - 1) {
-                alreadyUsedBlockchainIndex = 0;
-            } else if (alreadyUsedBlockchains.length === viableBlockchains.length) {
-                alreadyUsedBlockchainIndex = alreadyUsedBlockchainIndex + 1;
-            }
-            if (!alreadyUsedBlockchains.includes(chosenBlockchainKey)) {
-                alreadyUsedBlockchains.push(chosenBlockchainKey);
-            }
-        } else {
-            chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
+       
+            await userCostUpdater.addToUserCosts(user, cost[chosenBlockchainKey]);
+            const data = transactionData.violations ? transactionData.violations[index].dataString : transactionData.dataString;
+            const dataHash = transactionData.violations ? transactionData.violations[index].dataHash : transactionData.dataHash;
+            const transaction = {
+                username: user.username,
+                blockchain: constants.blockchains[chosenBlockchainKey].name,
+                dataHash,
+                data,
+                cost: cost[chosenBlockchainKey],
+                policyId: currentlyActivePolicy._id,
+                costProfile: currentlyActivePolicy.costProfile,
+                interval: currentlyActivePolicy.interval
+            };
+            await TransactionRepository.createTransaction(transaction);
+            transactionInfo.push(transaction);
+            previouslyActivePolicy = currentlyActivePolicy;
         }
-
-        await userCostUpdater.addToUserCosts(user, cost[chosenBlockchainKey]);
-        const data = transactionData.violations ? transactionData.violations[index].dataString : transactionData.dataString;
-        const dataHash = transactionData.violations ? transactionData.violations[index].dataHash : transactionData.dataHash;
-        const transaction = {
-            username: user.username,
-            blockchain: constants.blockchains[chosenBlockchainKey].name,
-            dataHash,
-            data,
-            cost: cost[chosenBlockchainKey],
-            policyId: currentlyActivePolicy._id,
-            costProfile: currentlyActivePolicy.costProfile,
-            interval: currentlyActivePolicy.interval
-        };
-        await TransactionRepository.createTransaction(transaction);
-        transactionInfo.push(transaction);
-        previouslyActivePolicy = currentlyActivePolicy;
     }
     return transactionInfo;
 }

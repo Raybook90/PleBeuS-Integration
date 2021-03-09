@@ -14,8 +14,6 @@ async function selectBlockchainFromPolicy(policy) {
     } else {
         blockchainPool = await BlockchainRepository.getBlockchainsByNameShort(policy.preferredBC);
     }
-    //Rati
-    console.log(blockchainPool);
     // If only one preferred Policy, use that and don't execute rest of code.
     if (blockchainPool.length === 1) {
         return blockchainPool;
@@ -116,33 +114,41 @@ async function selectBlockchainWithMlFromPolicy(policy) {
             }
 
 
-        function sendData() {
-            var options = {
-                uri:('http://192.168.178.20:5000/api/predict'),
-                method: 'POST',
-                body: {
-                    "type": type,
-                    "smart_contract": smart_contract,
-                    "turing_complete": turing_complete,
-                    "transaction_speed": 2,
-                    "popularity": popularity,
-                    "data_size": data_size,
-                   
-                },
-                headers: {
-                    "Content-type": "application/json"
-                },
-                json: true
-            };
-            request(options)
-                .then((parsedBody) => {
-                    console.log(parsedBody);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-        sendData();
+        
+        var options = {
+            uri:('http://192.168.178.20:5000/api/predict'),
+            method: 'POST',
+            body: {
+                "type": type,
+                "smart_contract": smart_contract,
+                "turing_complete": turing_complete,
+                "transaction_speed": 2,
+                "popularity": popularity,
+                "data_size": data_size,
+               
+            },
+            headers: {
+                "Content-type": "application/json"
+            },
+            json: true
+        };
+
+        return new Promise((resolve, reject) => {
+            request(options).then((response) => {
+                resolve(response);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+        /*request(options)
+            .then((response) => {
+                console.log(response)
+                return response.data;
+            })
+            .catch((err) => {
+                console.log(err);
+            });*/
+        
     }
 }
 
