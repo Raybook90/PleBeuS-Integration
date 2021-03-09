@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\business-logic",
-    "\\controller",
+    "\\db-dump",
+    "\\db-dump\\policy-framework",
+    "\\docker",
+    "\\docker\\express",
+    "\\docker\\mongo",
+    "\\Local settings (.vs)",
     "\\public",
-    "\\public\\js",
-    "\\repositories",
-    "\\routes",
-    "\\util",
-    "\\views",
-    "\\views\\_shared"
+    "\\public\\stylesheets",
+    "\\util"
   ],
-  "SelectedNode": "\\api\\bc-fees.js",
   "PreviewInSolutionExplorer": false
 }

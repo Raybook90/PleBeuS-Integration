@@ -58,6 +58,11 @@ const blockchains = {
         nameShort: 'PSG',
         type: blockchainTypes.PRIVATE
     },
+    COR: {
+        name: 'Corda',
+        nameShort: 'COR',
+        type: blockchainTypes.PRIVATE
+    },
 };
 
 const exchanges = {

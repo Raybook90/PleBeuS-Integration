@@ -45,9 +45,10 @@ async function makeTransactions(policies, user, transactionData) {
     for (let [index, cost] of sheetCosts.entries()) {
         currentlyActivePolicy = await policySelector.selectPolicy(policies, user);
         viableBlockchains = await blockchainSelector.selectBlockchainFromPolicy(currentlyActivePolicy);
+        console.log(viableBlockchains);
         let chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
         //Test Rati
-        blockchainSelector.selectBlockchainWithMlFromPolicy(currentlyActivePolicy)
+        /*blockchainSelector.selectBlockchainWithMlFromPolicy(currentlyActivePolicy)*/
         if (currentlyActivePolicy['split']) {
             if (previouslyActivePolicy && !previouslyActivePolicy._id.equals(currentlyActivePolicy._id)) {
                 alreadyUsedBlockchains = [];

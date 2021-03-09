@@ -14,7 +14,8 @@ async function selectBlockchainFromPolicy(policy) {
     } else {
         blockchainPool = await BlockchainRepository.getBlockchainsByNameShort(policy.preferredBC);
     }
-
+    //Rati
+    console.log(blockchainPool);
     // If only one preferred Policy, use that and don't execute rest of code.
     if (blockchainPool.length === 1) {
         return blockchainPool;
