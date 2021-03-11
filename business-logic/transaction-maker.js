@@ -54,17 +54,17 @@ async function makeTransactions(policies, user, transactionData) {
             const dataHash = transactionData.violations ? transactionData.violations[index].dataHash : transactionData.dataHash;
             const transaction = {
                 username: user.username,
-                blockchain: prediction.Prediction,
+                blockchain: prediction.name,
                 dataHash,
                 data,
                 policyId: currentlyActivePolicy._id,
                 costProfile: currentlyActivePolicy.costProfile,
-                interval: currentlyActivePolicy.interval
+                interval: currentlyActivePolicy.interval,
+                mlModel: currentlyActivePolicy.mlModel
             };
             await TransactionRepository.createTransaction(transaction);
             transactionInfo.push(transaction);
             previouslyActivePolicy = currentlyActivePolicy;
-            console.log(prediction.Prediction);
         } else{
             // Use normal Selection algorithm if ML has not been chosen
             if (currentlyActivePolicy['split']) {

@@ -24,6 +24,7 @@ function buildPolicy(requestBody = null, username) {
         policy.timeFrameStart = '00:00';
         policy.timeFrameEnd = '00:00';
         policy.useMachineLearning = false;
+        policy.mlModel = 'decision_tree'
     } else if (requestBody.interval === DEFAULT) {
         policy.username = requestBody.username;
         policy.preferredBC = requestBody.preferredBC || [];
@@ -39,6 +40,7 @@ function buildPolicy(requestBody = null, username) {
         policy.split = requestBody.split === 'true';
         policy.costProfile = requestBody.costProfile;
         policy.useMachineLearning = requestBody.useMachineLearning === 'true';
+        policy.mlModel = requestBody.mlModel;
         if (requestBody._id) {
             policy._id = requestBody._id;
         }
@@ -60,6 +62,7 @@ function buildPolicy(requestBody = null, username) {
         policy.timeFrameStart = requestBody.timeFrameStart;
         policy.timeFrameEnd = requestBody.timeFrameEnd;
         policy.useMachineLearning = requestBody.useMachineLearning === 'true';
+        policy.mlModel = requestBody.mlModel;
         if (requestBody._id) {
             policy._id = requestBody._id;
         }

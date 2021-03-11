@@ -25,6 +25,21 @@
                         </button>
                     </div>
                 </div>
+                 <div class="field extended-form-rati">
+                    <label class="label">Which ML model do you want to use</label>
+                    <div class="control test-radio-rati">
+                        <label class="radio">
+                            <input type="radio" name="mlModel"
+                                   value="decision_tree" {{ "checked" if policy.mlModel }}>
+                            Decision Tree
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="mlModel"
+                                   value="naive_bayes" {{ "checked" if not policy.mlModel }}>
+                            Naive Bayes
+                        </label>
+                    </div>
+                </div>
                 <div class="field">
                     <label class="label" for="preferredBC">Preferred Blockchains</label>
                     <div class="control">

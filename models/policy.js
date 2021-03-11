@@ -42,6 +42,11 @@ const policySchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    //Rati ML feature
+    mlModel:{
+        type: String,
+        default: 'decision_tree',
+    },
     bcTuringComplete: {
         type: Boolean,
         default: false,

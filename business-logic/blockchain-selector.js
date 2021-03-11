@@ -80,6 +80,7 @@ async function selectBlockchainForTransaction(policy, bcCosts, viableBlockchains
 async function selectBlockchainWithMlFromPolicy(policy) {
     if (!policy.preferredBC || policy.preferredBC.length === 0) {
         //API call to selection endpoint 
+        var model = policy.mlModel;
         var type = policy.bcType;
         var smart_contract = policy.bcSmartContract;
         var turing_complete = policy.bcTuringComplete;
@@ -116,9 +117,11 @@ async function selectBlockchainWithMlFromPolicy(policy) {
 
         
         var options = {
-            uri:('http://192.168.178.20:5000/api/predict'),
+            /*uri:('http://192.168.178.20:5000/api/predict'),*/
+            uri:('http://10.12.62.178:5000/api/predict'),
             method: 'POST',
             body: {
+                "model": model,
                 "type": type,
                 "smart_contract": smart_contract,
                 "turing_complete": turing_complete,

@@ -26,6 +26,10 @@ const transactionSchema = new mongoose.Schema({
     },
     policyId: {
         type: mongoose.Schema.Types.ObjectId,
+    },
+    //Rati ML feature
+    mlModel: {
+        type: String,
     }
 });
 
