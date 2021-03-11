@@ -58,7 +58,6 @@ async function makeTransactions(policies, user, transactionData) {
                 dataHash,
                 data,
                 policyId: currentlyActivePolicy._id,
-                costProfile: currentlyActivePolicy.costProfile,
                 interval: currentlyActivePolicy.interval,
                 mlModel: currentlyActivePolicy.mlModel
             };

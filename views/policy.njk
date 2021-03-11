@@ -35,6 +35,11 @@
                         </label>
                         <label class="radio">
                             <input type="radio" name="mlModel"
+                                   value="random_forest" {{ "checked" if not policy.mlModel }}>
+                            Random Forest
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="mlModel"
                                    value="naive_bayes" {{ "checked" if not policy.mlModel }}>
                             Naive Bayes
                         </label>
