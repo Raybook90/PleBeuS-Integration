@@ -117,8 +117,9 @@ async function selectBlockchainWithMlFromPolicy(policy) {
 
         
         var options = {
-            /*uri:('http://192.168.178.20:5000/api/predict'),*/
-            uri:('http://10.12.62.178:5000/api/predict'),
+            uri:('http://192.168.178.20:5000/api/predict'),
+            // ip university
+            /*uri:('http://10.12.62.178:5000/api/predict'),*/
             method: 'POST',
             body: {
                 "model": model,

@@ -40,6 +40,7 @@
                                 <th><abbr title="Cost Profile">Profile</abbr></th>
                                 <th><abbr title="Time Frame">Time</abbr></th>
                                 <th><abbr title="Use Machine Learning for Selection">Use ML</th>
+                                <th><abbr title="Machine Learning model">ml-model</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -58,14 +59,15 @@
                                     <td class="policy-bc-tps">{{ policy.bcTps }}</td>
                                     <td class="policy-block-time">{{ policy.bcBlockTime }}</td>
                                     <td class="policy-bc-data-size">{{ policy.bcDataSize }}</td>
-                                    <td class="policy-bc-smart-contract">{{ macros.getIcon(policy.bcSmartContract) }}</td>
+                                    <td class="policy-bc-smart-contract">{{ macros.getIcon(policy.bcSmartContract) if policy.useMachineLearning }}</td>
                                     <td class="policy-bc-touring-complete">{{ macros.getIcon(policy.bcTuringComplete) }}</td>
-                                    <td class="policy-bc-popularity">{{ policy.popularity }}</td>
+                                    <td class="policy-bc-popularity">{{ policy.popularity if policy.useMachineLearning }}</td>
                                     <td class="policy-split">{{ macros.getIcon(policy.split) }}</td>
                                     <td class="policy-cost-profile" title="{{ policy.costProfile }}">{{ macros.getTagCostProfile(policy.costProfile) }}
                                     </td>
                                     <td class="policy-time-frame">{{ macros.getTime(policy.timeFrameStart, policy.timeFrameEnd) }}</td>
-                                    <td class="policy-use-ml">{{ macros.getIcon(policy.useMachineLearning) }}</td>
+                                    <td class="policy-use-ml">{{  macros.getIcon(policy.useMachineLearning) if policy.useMachineLearning else "-" }}</td>
+                                    <td class="policy-ml-model">{{ policy.mlModel if policy.useMachineLearning }}</td>
                                     <td class="policy-edit">
                                         <a class="button is-link table-button" href="/policy?id={{ policy._id }}">Edit
                                             Policy</a>

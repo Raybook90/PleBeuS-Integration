@@ -119,7 +119,7 @@ function toJSON(form) {
 
 document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
     var features = document.getElementsByClassName('extended-form-rati');
-    
+    var tps = document.getElementsByClassName('condensed-form-rati');
     var isHidden = true;
     for (let i = 0; i < features.length; ++i) {
         if (features[i].style.display === "none") {
@@ -139,10 +139,22 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
     if(isHidden){
         /*document.getElementsByClassName('custId').value = "false";*/
         document.querySelector('input[name=useMachineLearning').value = "false";
+        tps[0].style.display = "block";
         console.log(document.querySelector('input[name=useMachineLearning').value);
     }else{
         /*document.getElementsByClassName('custId').value = "true";*/
-        document.querySelector('input[name=useMachineLearning').value = "true";
-        console.log(document.querySelector('input[name=useMachineLearning').value);
+        document.querySelector('input[name=useMachineLearning]').value = "true";
+        document.querySelector('select[name=bcTps').disabled = true;
+        document.querySelector('select[name=bcBlockTime').disabled = true;
+        tps[0].style.display = "none";
+        console.log(document.querySelector('select[name=bcTps]'));
+        console.log(document.querySelector('input[name=useMachineLearning'));
     }
 }, false);
+
+// disable features when Machine learning is selected
+
+/*function checkstate() {
+    document.getElementById('preferredBC').disabled = document.querySelector('input[name=useMachineLearning]);
+}
+*/
