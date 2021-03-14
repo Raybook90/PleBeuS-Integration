@@ -35,6 +35,7 @@
                                 <th><abbr title="Transaction Size">Size</abbr></th>
                                 <th><abbr title="Smart Contract">SM</abbr></th>
                                 <th><abbr title="Turing Complete">Compl.</abbr></th>
+                                <th><abbr title="Platform Transaction Speed">Speed</abbr></th>
                                 <th><abbr title="Popularity">Pop</abbr></th>
                                 <th><abbr title="Allow Split Transactions">Split</abbr></th>
                                 <th><abbr title="Cost Profile">Profile</abbr></th>
@@ -56,18 +57,19 @@
                                     <td class="policy-cost">{{ policy.cost }}</td>
                                     <td class="policy-currency">{{ policy.currency }}</td>
                                     <td class="policy-interval">{{ macros.getTagInterval(policy.interval) }}</td>
-                                    <td class="policy-bc-tps">{{ policy.bcTps }}</td>
-                                    <td class="policy-block-time">{{ policy.bcBlockTime }}</td>
+                                    <td class="policy-bc-tps">{{ policy.bcTps if not policy.useMachineLearning else "-" }}</td>
+                                    <td class="policy-block-time">{{ policy.bcBlockTime if not policy.useMachineLearning else "-"}}</td>
                                     <td class="policy-bc-data-size">{{ policy.bcDataSize }}</td>
-                                    <td class="policy-bc-smart-contract">{{ macros.getIcon(policy.bcSmartContract) if policy.useMachineLearning }}</td>
+                                    <td class="policy-bc-smart-contract">{{ macros.getIcon(policy.bcSmartContract) if policy.useMachineLearning else "-" }}</td>
                                     <td class="policy-bc-touring-complete">{{ macros.getIcon(policy.bcTuringComplete) }}</td>
-                                    <td class="policy-bc-popularity">{{ policy.popularity if policy.useMachineLearning }}</td>
-                                    <td class="policy-split">{{ macros.getIcon(policy.split) }}</td>
-                                    <td class="policy-cost-profile" title="{{ policy.costProfile }}">{{ macros.getTagCostProfile(policy.costProfile) }}
+                                    <td class="policy-platform-speed">{{ policy.platformTransactionSpeed if policy.useMachineLearning else "-" }}</td>
+                                    <td class="policy-bc-popularity">{{ policy.popularity if policy.useMachineLearning else "-" }}</td>
+                                    <td class="policy-split">{{ macros.getIcon(policy.split) if not policy.useMachineLearning else "-" }}</td>
+                                    <td class="policy-cost-profile" title="{{ policy.costProfile }}">{{ macros.getTagCostProfile(policy.costProfile) if not policy.useMachineLearning else "-" }}
                                     </td>
                                     <td class="policy-time-frame">{{ macros.getTime(policy.timeFrameStart, policy.timeFrameEnd) }}</td>
                                     <td class="policy-use-ml">{{  macros.getIcon(policy.useMachineLearning) if policy.useMachineLearning else "-" }}</td>
-                                    <td class="policy-ml-model">{{ policy.mlModel if policy.useMachineLearning }}</td>
+                                    <td class="policy-ml-model">{{ policy.mlModel if policy.useMachineLearning else "-" }}</td>
                                     <td class="policy-edit">
                                         <a class="button is-link table-button" href="/policy?id={{ policy._id }}">Edit
                                             Policy</a>
