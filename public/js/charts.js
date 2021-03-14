@@ -227,6 +227,10 @@ function loadGraphs(resBody) {
     const psgArray = resBody.intervalStats.map(function (stat) {
         return stat.PSG
     });
+    //Added Blockchains Rati
+    const neoArray = resBody.intervalStats.map(function (stat) {
+        return stat.NEO
+    });
 
     // if the chart has already been created, update values
     if (blockchainIntervalChart) {
@@ -238,6 +242,8 @@ function loadGraphs(resBody) {
         blockchainIntervalChart.data.datasets[5].data = hypArray;
         blockchainIntervalChart.data.datasets[6].data = mlcArray;
         blockchainIntervalChart.data.datasets[7].data = psgArray;
+        //Added Blockchains Rati
+        blockchainIntervalChart.data.datasets[8].data = neoArray;
         blockchainIntervalChart.data.labels = intervalArray;
         blockchainIntervalChart.update();
     } else {
@@ -292,6 +298,12 @@ function loadGraphs(resBody) {
                         backgroundColor: 'rgb(58,255,78)',
                         borderColor: 'rgb(58,255,78)',
                         data: psgArray,
+                    },
+                    {
+                        label: 'NEO',
+                        backgroundColor: 'rgb(118, 139, 96)',
+                        borderColor: 'rgb(118, 139, 96)',
+                        data: neoArray,
                     },
                 ],
                 labels: intervalArray,

@@ -89,6 +89,7 @@ function getStatsForInterval(interval, transactions) {
         HYP: 0,
         MLC: 0,
         PSG: 0,
+        NEO: 0,
     };
     const relevantTransactions = transactions.filter(transaction => transaction.interval === interval);
     relevantTransactions.forEach((transaction) => {
@@ -115,6 +116,9 @@ function getStatsForInterval(interval, transactions) {
         }
         if (transaction.blockchain === constants.blockchains.PSG.name) {
             intervalStats.PSG++;
+        }
+        if (transaction.blockchain === constants.blockchains.NEO.name) {
+            intervalStats.NEO++;
         }
     });
 

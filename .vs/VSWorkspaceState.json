@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\db-dump",
-    "\\db-dump\\policy-framework",
+    "\\business-logic",
+    "\\models",
     "\\public",
     "\\public\\js",
     "\\repositories",
@@ -11,6 +11,6 @@
     "\\views",
     "\\views\\_shared"
   ],
-  "SelectedNode": "\\views\\default-policy.njk",
+  "SelectedNode": "\\constants.js",
   "PreviewInSolutionExplorer": false
 }

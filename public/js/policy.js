@@ -56,6 +56,7 @@ function buildErrorString(errors) {
 function submitPolicy(id) {
     const form = document.querySelector(id);
     const jsonFormData = toJSON(form);
+    console.log(jsonFormData);
     if (typeof jsonFormData.preferredBC === "string") {
         // Back-end expects array of strings
         jsonFormData.preferredBC = [jsonFormData.preferredBC];
@@ -118,11 +119,16 @@ function toJSON(form) {
 
 
 document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
+
+    console.log('in eventlistener');
     var to_extended_features = document.getElementsByClassName('extended-form-rati');
     var to_hide_features = document.getElementsByClassName('condensed-form-rati');
     var isHidden = true;
     for (let i = 0; i < to_extended_features.length; ++i) {
-        if (to_extended_features[i].style.display === "none") {
+        console.log(to_extended_features[i]);
+        console.log(to_extended_features[i].display);
+        console.log(to_extended_features[i].style.display);
+        if (to_extended_features[i].style.display === "none" || to_extended_features[i].style.display === '') {
             to_extended_features[i].style.display = "block";
             var e = to_extended_features[i].querySelectorAll(".label");
             e[0].style.color = "green";
@@ -158,5 +164,23 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
     }
 }, false);
 
+
+document.addEventListener('DOMContentLoaded', function(event) {
+    var bCustID = document.querySelector('.custId').value;
+    var to_hide_features = document.getElementsByClassName('condensed-form-rati');
+    console.log(bCustID);
+    if(bCustID == "true"){
+        console.log("inif");
+        var to_extended_features = document.getElementsByClassName('extended-form-rati');
+        for (let i = 0; i < to_extended_features.length; ++i) {
+            to_extended_features[i].style.display = "block";
+        }  
+
+        for (let i = 0; i < to_hide_features.length; ++i) {
+            to_hide_features[i].style.display = "none";
+        }
+
+    }
+})
 
 

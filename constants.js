@@ -58,6 +58,11 @@ const blockchains = {
         nameShort: 'PSG',
         type: blockchainTypes.PRIVATE
     },
+    NEO: {
+        name: 'Neo',
+        nameShort: 'NEO',
+        type: blockchainTypes.PUBLIC
+    },
 };
 
 const exchanges = {
