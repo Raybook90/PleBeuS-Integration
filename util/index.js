@@ -15,6 +15,7 @@ function buildPolicy(requestBody = null, username) {
         policy.bcType = 'indifferent';
         policy.bcSmartContract = false;
         policy.bcTuringComplete = false;
+        policy.platformTransactionSpeed = 'low'
         policy.popularity = 'low'
         policy.interval = '';
         policy.bcBlockTime = 0;
@@ -33,6 +34,7 @@ function buildPolicy(requestBody = null, username) {
         policy.bcSmartContract = requestBody.bcSmartContract ==='true';
         policy.bcTuringComplete = requestBody.bcTuringComplete === 'true';
         policy.popularity = requestBody.popularity;
+        policy.platformTransactionSpeed = requestBody.platformTransactionSpeed;
         policy.currency = requestBody.currency;
         policy.bcTps = parseInt(requestBody.bcTps, 10);
         policy.bcBlockTime = parseInt(requestBody.bcBlockTime, 10);
@@ -52,6 +54,7 @@ function buildPolicy(requestBody = null, username) {
         policy.bcType = requestBody.bcType;
         policy.bcSmartContract = requestBody.bcSmartContract === 'true';
         policy.bcTuringComplete = requestBody.bcTuringComplete === 'true';
+        policy.platformTransactionSpeed = requestBody.platformTransactionSpeed;
         policy.popularity = requestBody.popularity;
         policy.interval = requestBody.interval;
         policy.bcTps = parseInt(requestBody.bcTps, 10);

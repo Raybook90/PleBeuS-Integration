@@ -144,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field condensed-form-rati">
                     <label class="label" for="bcBlockTime">Max. Block Time (in Seconds)</label>
                     <div class="control">
                         <div class="select">
@@ -220,6 +220,24 @@
                         </label>
                     </div>
                 </div>
+                 <div class="field extended-form-rati">
+                    <div class="control">
+                        <label class="label" for="platformTransactionSpeed">Platform Transaction Speed</label>
+                        <div class="select">
+                            <select id="platformTransactionSpeed" name="platformTransactionSpeed">
+                                <option value="low" {{ "selected" if policy.platformTransactionSpeed == "low" }}>
+                                    Low
+                                </option>
+                                <option value="medium" {{ "selected" if policy.platformTransactionSpeed == "medium" }}>
+                                    Medium
+                                </option>
+                                <option value="high" {{ "selected" if policy.platformTransactionSpeed == "high" }}>
+                                    High
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="field extended-form-rati">
                     <div class="control">
                         <label class="label" for="popularity">Popularity</label>
@@ -238,7 +256,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field condensed-form-rati">
                     <label class="label">Allow Split Transations</label>
                     <div class="control">
                         <label class="radio">
@@ -253,7 +271,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field condensed-form-rati">
                     <div class="control">
                         <label class="label" for="costProfile">Cost Profile</label>
                         <div class="select">

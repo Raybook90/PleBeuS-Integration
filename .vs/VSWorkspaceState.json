@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\docker",
-    "\\docker\\express",
-    "\\docker\\mongo",
-    "\\models",
+    "\\db-dump",
+    "\\db-dump\\policy-framework",
     "\\public",
+    "\\public\\js",
     "\\repositories",
     "\\routes",
     "\\util",
-    "\\views"
+    "\\views",
+    "\\views\\_shared"
   ],
-  "SelectedNode": "\\api\\bc-fees.js",
+  "SelectedNode": "\\views\\default-policy.njk",
   "PreviewInSolutionExplorer": false
 }

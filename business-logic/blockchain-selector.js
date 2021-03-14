@@ -85,7 +85,8 @@ async function selectBlockchainWithMlFromPolicy(policy) {
         var smart_contract = policy.bcSmartContract;
         var turing_complete = policy.bcTuringComplete;
         var popularity = policy.popularity;
-        var data_size = policy.bcDataSize
+        var data_size = policy.bcDataSize;
+        var platformTransactionSpeed = policy.platformTransactionSpeed;
 
 
            if (type === 'public' || type === 'indifferent') {
@@ -114,6 +115,14 @@ async function selectBlockchainWithMlFromPolicy(policy) {
                 popularity = 3;
             }
 
+            if (platformTransactionSpeed === 'low') {
+                platformTransactionSpeed = 1;
+            } else if (platformTransactionSpeed === 'medium') {
+                platformTransactionSpeed = 2;
+            } else {
+                platformTransactionSpeed = 3;
+            }
+
 
         
         var options = {
@@ -126,7 +135,7 @@ async function selectBlockchainWithMlFromPolicy(policy) {
                 "type": type,
                 "smart_contract": smart_contract,
                 "turing_complete": turing_complete,
-                "transaction_speed": 2,
+                "transaction_speed": platformTransactionSpeed,
                 "popularity": popularity,
                 "data_size": data_size,
                

@@ -52,6 +52,12 @@ const policySchema = new mongoose.Schema({
         default: false,
     },
     //Rati ML feature 
+    platformTransactionSpeed: {
+        type: String,
+        enum: ['low', 'medium', 'high'],
+        default: 'low',
+    },
+    //Rati ML feature 
     popularity: {
         type: String,
         enum: ['low', 'medium', 'high'],

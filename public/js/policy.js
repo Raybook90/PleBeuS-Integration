@@ -118,43 +118,45 @@ function toJSON(form) {
 
 
 document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
-    var features = document.getElementsByClassName('extended-form-rati');
-    var tps = document.getElementsByClassName('condensed-form-rati');
+    var to_extended_features = document.getElementsByClassName('extended-form-rati');
+    var to_hide_features = document.getElementsByClassName('condensed-form-rati');
     var isHidden = true;
-    for (let i = 0; i < features.length; ++i) {
-        if (features[i].style.display === "none") {
-            features[i].style.display = "block";
-            var e = features[i].querySelectorAll(".label");
+    for (let i = 0; i < to_extended_features.length; ++i) {
+        if (to_extended_features[i].style.display === "none") {
+            to_extended_features[i].style.display = "block";
+            var e = to_extended_features[i].querySelectorAll(".label");
             e[0].style.color = "green";
 
             isHidden = false;
             
 
         } else {
-            features[i].style.display = "none";
+            to_extended_features[i].style.display = "none";
             isHidden = true;
         }      
     }
 
     if(isHidden){
-        /*document.getElementsByClassName('custId').value = "false";*/
         document.querySelector('input[name=useMachineLearning').value = "false";
-        tps[0].style.display = "block";
-        console.log(document.querySelector('input[name=useMachineLearning').value);
+        for (let i = 0; i < to_hide_features.length; ++i) {
+            to_hide_features[i].style.display = "block";
+        }
+        
+
     }else{
-        /*document.getElementsByClassName('custId').value = "true";*/
         document.querySelector('input[name=useMachineLearning]').value = "true";
+        //disable features not necessary for machine learning model
         document.querySelector('select[name=bcTps').disabled = true;
         document.querySelector('select[name=bcBlockTime').disabled = true;
-        tps[0].style.display = "none";
+        for (let i = 0; i < to_hide_features.length; ++i) {
+            to_hide_features[i].style.display = "none";
+        }
+        document.querySelector("input[value=indifferent]").disabled = true;
+        console.log(document.querySelector("input[value=indifferent]"))
         console.log(document.querySelector('select[name=bcTps]'));
         console.log(document.querySelector('input[name=useMachineLearning'));
     }
 }, false);
 
-// disable features when Machine learning is selected
 
-/*function checkstate() {
-    document.getElementById('preferredBC').disabled = document.querySelector('input[name=useMachineLearning]);
-}
-*/
+
