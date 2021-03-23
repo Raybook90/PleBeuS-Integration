@@ -63,6 +63,47 @@ const blockchains = {
         nameShort: 'NEO',
         type: blockchainTypes.PUBLIC
     },
+    STRAX: {
+        name: 'Stratis',
+        nameShort: 'STRAX',
+        type: blockchainTypes.PRIVATE
+    },
+    COR: {
+        name: 'R3 Corda',
+        nameShort: 'COR',
+        type: blockchainTypes.PRIVATE
+    },
+    ADA: {
+        name: 'Cardano',
+        nameShort: 'ADA',
+        type: blockchainTypes.PUBLIC
+    },
+    XRP: {
+        name: 'Ripple',
+        nameShort: 'XRP',
+        type: blockchainTypes.PUBLIC
+    },
+    QTUM: {
+        name: 'QTUM',
+        nameShort: 'QTUM',
+        type: blockchainTypes.PUBLIC
+    },
+    ICX: {
+        name: 'ICON',
+        nameShort: 'ICX',
+        type: blockchainTypes.PUBLIC
+    },
+    VET: {
+        name: 'VeChain',
+        nameShort: 'VET',
+        type: blockchainTypes.PUBLIC
+    },
+    WAN: {
+        name: 'Wanchain',
+        nameShort: 'WAN',
+        type: blockchainTypes.PUBLIC
+    },
+
 };
 
 const exchanges = {

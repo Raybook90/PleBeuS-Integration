@@ -9,10 +9,13 @@ const util = require('../util');
 
 async function getAllBlockchainCostsPerByte(currency) {
     // TODO: Switch back to API for prod
-    //const publicBlockchainsString = util.publicBlockchainsForCostRequest();
-    //const publicBlockchainRates = await ratesAPI.fetchBlockchainCost(currency, publicBlockchainsString);
-    const publicBlockchainRates = await ratesAPI.fetchBlockchainCostNOAPI(currency);
+    const publicBlockchainsString = util.publicBlockchainsForCostRequest();
+    const publicBlockchainRates = await ratesAPI.fetchBlockchainCost(currency, publicBlockchainsString);
+    //const publicBlockchainRates = await ratesAPI.fetchBlockchainCostNOAPI(currency);
     const allBlockchainRates = util.addPrivateRatesToObject(publicBlockchainRates);
+    console.log(allBlockchainRates);
+    const test =  await costCalculator.calculateCosts(allBlockchainRates);
+    console.log(test);
     return await costCalculator.calculateCosts(allBlockchainRates);
 }
 
@@ -24,11 +27,13 @@ function getCostsForData(costsPerByte, data) {
             const costsForSheet = costCalculator.multiplyWithBytes(costsPerByte, sheetData.sizeString);
             costs.push(costsForSheet);
         });
+        console.log(costs);
         return costs;
     }
 
     const costsForTrxHash = costCalculator.multiplyWithBytes(costsPerByte, data.sizeString);
-    costs.push(costsForTrxHash);
+    costs.push(costsForTrxHash); 
+    console.log(costs);
     return costs;
 
 }
@@ -47,16 +52,18 @@ async function makeTransactions(policies, user, transactionData) {
         currentlyActivePolicy = await policySelector.selectPolicy(policies, user);
         viableBlockchains = await blockchainSelector.selectBlockchainFromPolicy(currentlyActivePolicy);
         let chosenBlockchainKey = await blockchainSelector.selectBlockchainForTransaction(currentlyActivePolicy, cost, viableBlockchains, alreadyUsedBlockchains, alreadyUsedBlockchainIndex);
-        //Test Rati - Use Machine Learning to determine Blockchain
+        //Rati - Use Machine Learning to determine Blockchain
         if(currentlyActivePolicy['useMachineLearning']){
             prediction = await blockchainSelector.selectBlockchainWithMlFromPolicy(currentlyActivePolicy);
+            await userCostUpdater.addToUserCosts(user, cost[prediction.name]);
             const data = transactionData.violations ? transactionData.violations[index].dataString : transactionData.dataString;
             const dataHash = transactionData.violations ? transactionData.violations[index].dataHash : transactionData.dataHash;
             const transaction = {
                 username: user.username,
-                blockchain: prediction.name,
+                blockchain: constants.blockchains[prediction.name].name,
                 dataHash,
                 data,
+                cost: cost[prediction.name],
                 policyId: currentlyActivePolicy._id,
                 interval: currentlyActivePolicy.interval,
                 mlModel: currentlyActivePolicy.mlModel

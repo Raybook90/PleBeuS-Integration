@@ -93,8 +93,7 @@ module.exports.savePolicy = async (req, res) => {
         error.statusCode = 400;
         return res.status(error.statusCode).send({statusCode: error.statusCode, message: error.message})
     }
-    //Rati test
-    console.log(req.body);
+    
     const providedPolicy = util.buildPolicy(req.body);
     //Rati test
     console.log(providedPolicy)

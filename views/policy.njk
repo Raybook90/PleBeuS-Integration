@@ -30,17 +30,17 @@
                     <div class="control test-radio-rati">
                         <label class="radio">
                             <input type="radio" name="mlModel"
-                                   value="decision_tree" {{ "checked" if policy.mlModel }}>
+                                   value="decision_tree" {{ "checked" if policy.mlModel == 'decision_tree' }}>
                             Decision Tree
                         </label>
                         <label class="radio">
                             <input type="radio" name="mlModel"
-                                   value="random_forest" {{ "checked" if not policy.mlModel }}>
+                                   value="random_forest" {{ "checked" if policy.mlModel == 'random_forest'}}>
                             Random Forest
                         </label>
                         <label class="radio">
                             <input type="radio" name="mlModel"
-                                   value="naive_bayes" {{ "checked" if not policy.mlModel }}>
+                                   value="naive_bayes" {{ "checked" if policy.mlModel == 'naive_bayes'}}>
                             Naive Bayes
                         </label>
                     </div>

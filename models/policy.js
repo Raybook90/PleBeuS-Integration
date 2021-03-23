@@ -45,6 +45,7 @@ const policySchema = new mongoose.Schema({
     //Rati ML feature
     mlModel:{
         type: String,
+        enum: ['decision_tree', 'random_forest', 'naive_bayes'],
         default: 'decision_tree',
     },
     bcTuringComplete: {

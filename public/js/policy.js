@@ -168,9 +168,7 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
 document.addEventListener('DOMContentLoaded', function(event) {
     var bCustID = document.querySelector('.custId').value;
     var to_hide_features = document.getElementsByClassName('condensed-form-rati');
-    console.log(bCustID);
     if(bCustID == "true"){
-        console.log("inif");
         var to_extended_features = document.getElementsByClassName('extended-form-rati');
         for (let i = 0; i < to_extended_features.length; ++i) {
             to_extended_features[i].style.display = "block";
