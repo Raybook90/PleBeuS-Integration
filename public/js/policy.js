@@ -42,6 +42,10 @@ function validateForm(data) {
         errors.push('Please provide a cost interval');
     }
 
+    if (document.querySelector('input[name=useMachineLearning').value === "true" && data.bcType === 'indifferent') {
+        errors.push('Please provide a blockchain type');
+    }
+
     return errors;
 }
 
@@ -119,15 +123,10 @@ function toJSON(form) {
 
 
 document.querySelector('.extended-button-rati').addEventListener("click", function (e) {
-
-    console.log('in eventlistener');
     var to_extended_features = document.getElementsByClassName('extended-form-rati');
     var to_hide_features = document.getElementsByClassName('condensed-form-rati');
     var isHidden = true;
     for (let i = 0; i < to_extended_features.length; ++i) {
-        console.log(to_extended_features[i]);
-        console.log(to_extended_features[i].display);
-        console.log(to_extended_features[i].style.display);
         if (to_extended_features[i].style.display === "none" || to_extended_features[i].style.display === '') {
             to_extended_features[i].style.display = "block";
             var e = to_extended_features[i].querySelectorAll(".label");
@@ -158,9 +157,6 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
             to_hide_features[i].style.display = "none";
         }
         document.querySelector("input[value=indifferent]").disabled = true;
-        console.log(document.querySelector("input[value=indifferent]"))
-        console.log(document.querySelector('select[name=bcTps]'));
-        console.log(document.querySelector('input[name=useMachineLearning'));
     }
 }, false);
 
@@ -172,7 +168,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         var to_extended_features = document.getElementsByClassName('extended-form-rati');
         for (let i = 0; i < to_extended_features.length; ++i) {
             to_extended_features[i].style.display = "block";
-        }  
+            var e = to_extended_features[i].querySelectorAll(".label");
+            e[0].style.color = "green";
+        }
+        document.querySelector("input[value=indifferent]").disabled = true;
 
         for (let i = 0; i < to_hide_features.length; ++i) {
             to_hide_features[i].style.display = "none";
