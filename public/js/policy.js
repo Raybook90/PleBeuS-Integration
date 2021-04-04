@@ -42,9 +42,9 @@ function validateForm(data) {
         errors.push('Please provide a cost interval');
     }
 
-    if (document.querySelector('input[name=useMachineLearning').value === "true" && data.bcType === 'indifferent') {
+    /*if (document.querySelector('input[name=useMachineLearning').value === "true" && data.bcType === 'indifferent') {
         errors.push('Please provide a blockchain type');
-    }
+    }*/
 
     return errors;
 }
@@ -146,6 +146,7 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
         for (let i = 0; i < to_hide_features.length; ++i) {
             to_hide_features[i].style.display = "block";
         }
+        document.querySelector("input[value=indifferent]").disabled = false;
         
 
     }else{

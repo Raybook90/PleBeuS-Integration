@@ -40,6 +40,11 @@
                         </label>
                         <label class="radio">
                             <input type="radio" name="mlModel"
+                                   value="support_vector_machine" {{ "checked" if policy.mlModel == 'support_vector_machine'}}>
+                            Support Vector Machine
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="mlModel"
                                    value="naive_bayes" {{ "checked" if policy.mlModel == 'naive_bayes'}}>
                             Naive Bayes
                         </label>

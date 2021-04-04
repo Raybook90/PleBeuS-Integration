@@ -41,7 +41,7 @@ function buildPolicy(requestBody = null, username) {
         policy.bcDataSize = parseInt(requestBody.bcDataSize, 10);
         policy.split = requestBody.split === 'true';
         policy.costProfile = requestBody.costProfile;
-        policy.useMachineLearning = requestBody.useMachineLearning === 'true';
+        policy.useMachineLearning = requestBody.useMachineLearning === 'false';
         policy.mlModel = requestBody.mlModel;
         if (requestBody._id) {
             policy._id = requestBody._id;
