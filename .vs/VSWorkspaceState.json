@@ -3,14 +3,8 @@
     "",
     "\\business-logic",
     "\\controller",
-    "\\public",
-    "\\public\\js",
-    "\\repositories",
-    "\\routes",
-    "\\util",
-    "\\views",
-    "\\views\\_shared"
+    "\\test"
   ],
-  "SelectedNode": "\\constants.js",
+  "SelectedNode": "\\docker-compose.yml",
   "PreviewInSolutionExplorer": false
 }

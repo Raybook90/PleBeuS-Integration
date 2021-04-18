@@ -140,13 +140,17 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
             isHidden = true;
         }      
     }
-
+    console.log(isHidden);
     if(isHidden){
         document.querySelector('input[name=useMachineLearning').value = "false";
         for (let i = 0; i < to_hide_features.length; ++i) {
             to_hide_features[i].style.display = "block";
         }
         document.querySelector("input[value=indifferent]").disabled = false;
+        console.log('inline-block');
+        document.querySelector("#indiffrent-rati").style.display= "inline-block";
+        document.querySelector('select[name=bcTps').disabled = false;
+        document.querySelector('select[name=bcBlockTime').disabled = false;
         
 
     }else{
@@ -158,14 +162,38 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
             to_hide_features[i].style.display = "none";
         }
         document.querySelector("input[value=indifferent]").disabled = true;
+
+        console.log('indifrrent none');
+        document.querySelector("#indiffrent-rati").style.display= "none";
     }
 }, false);
+
+
+//smart contract controller
+
+function ShowHideDiv() {
+        var chkYes = document.getElementById("chkYes");
+
+        var turingCompleteRati = document.getElementsByClassName("turing-complete-rati");
+
+        console.log("chkYes",chkYes);
+        console.log("chkYes.checked",chkYes.checked );
+        console.log(turingCompleteRati);
+
+        turingCompleteRati[0].style.display = chkYes.checked  ? "block" : "none";
+    }   
+
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
     var bCustID = document.querySelector('.custId').value;
     var to_hide_features = document.getElementsByClassName('condensed-form-rati');
     if(bCustID == "true"){
+
+    document.querySelector("input[value=indifferent]").disabled = true;
+
+        document.querySelector("#indiffrent-rati").style.display= "none";
+
         var to_extended_features = document.getElementsByClassName('extended-form-rati');
         for (let i = 0; i < to_extended_features.length; ++i) {
             to_extended_features[i].style.display = "block";

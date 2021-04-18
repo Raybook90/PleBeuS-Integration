@@ -71,17 +71,17 @@
                 <div class="field">
                     <label class="label">Blockchain Type</label>
                     <div class="control">
-                        <label class="radio">
+                        <label class="radio" required>
                             <input type="radio" name="bcType"
                                    value="public" {{ "checked" if policy.bcType == "public" }}>
                             Public
                         </label>
-                        <label class="radio">
+                        <label class="radio" required>
                             <input type="radio" name="bcType"
                                    value="private" {{ "checked" if policy.bcType == "private" }}>
                             Private
                         </label>
-                        <label class="radio">
+                        <label class="radio" id="indiffrent-rati" {{ "style=display:none" if  policy.useMachineLearning == "true" }} required>
                             <input type="radio" name="bcType"
                                    value="indifferent" {{ "checked" if policy.bcType == "indifferent" }}>
                             Indifferent
@@ -195,31 +195,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="field extended-form-rati">
+                <div class="field extended-form-rati smart-contract-rati">
                     <label class="label">Smart Contracts</label>
                     <div class="control test-radio-rati">
                         <label class="radio">
-                            <input type="radio" name="bcSmartContract"
+                            <input type="radio" id="chkYes" name="bcSmartContract" onclick="ShowHideDiv()"
                                    value="true" {{ "checked" if policy.bcSmartContract }}>
                             Yes
                         </label>
                         <label class="radio">
-                            <input type="radio" name="bcSmartContract"
+                            <input type="radio" id="chkNo" name="bcSmartContract" onclick="ShowHideDiv()"
                                    value="false" {{ "checked" if not policy.bcSmartContract }}>
                             No
                         </label>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field turing-complete-rati" {{ "style=display:none" if not policy.bcSmartContract }}>
                     <label class="label">Turing Completeness</label>
                     <div class="control">
                         <label class="radio">
-                            <input type="radio" name="bcTuringComplete"
+                            <input type="radio"  class="chkYes" name="bcTuringComplete" 
                                    value="true" {{ "checked" if policy.bcTuringComplete }}>
                             Yes
                         </label>
                         <label class="radio">
-                            <input type="radio" name="bcTuringComplete"
+                            <input type="radio" class="chkNo" name="bcTuringComplete"
                                    value="false" {{ "checked" if not policy.bcTuringComplete }}>
                             No
                         </label>
@@ -330,6 +330,10 @@
         .extended-form-rati {
             display: none;
             }
+
+
+
+
     </style>
 
 {% endblock %}

@@ -9,13 +9,13 @@ const util = require('../util');
 
 async function getAllBlockchainCostsPerByte(currency) {
     // TODO: Switch back to API for prod
-    const publicBlockchainsString = util.publicBlockchainsForCostRequest();
-    const publicBlockchainRates = await ratesAPI.fetchBlockchainCost(currency, publicBlockchainsString);
-    //const publicBlockchainRates = await ratesAPI.fetchBlockchainCostNOAPI(currency);
+    // const publicBlockchainsString = util.publicBlockchainsForCostRequest();
+    // const publicBlockchainRates = await ratesAPI.fetchBlockchainCost(currency, publicBlockchainsString);
+    const publicBlockchainRates = await ratesAPI.fetchBlockchainCostNOAPI(currency);
     const allBlockchainRates = util.addPrivateRatesToObject(publicBlockchainRates);
-    console.log(allBlockchainRates);
+    // console.log(allBlockchainRates);
     const test =  await costCalculator.calculateCosts(allBlockchainRates);
-    console.log(test);
+    // console.log(test);
     return await costCalculator.calculateCosts(allBlockchainRates);
 }
 

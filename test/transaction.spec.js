@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const app = require('../app');
 
-const username = 'Test';
+const username = 'Rati';
 const minTemp = 15;
 const maxTemp = 23;
 const iterations = 1000;
