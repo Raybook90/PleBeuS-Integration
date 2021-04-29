@@ -1,6 +1,6 @@
 # Policy-based Blockchain selection Framework
 
-This is a node.js based web application that allows to define policies for automated blockchain selection.
+This is a node.js based web application that allows to define policies for automated blockchain selection [[1]](#1).
 
 ## Development
 
@@ -52,3 +52,9 @@ web application which allows the creation of user policies. As soon as policies 
 the `/api/create-transactions` endpoint via a HTTP POST-request. The resulting response consists of an array of objects 
 which include the data to be sent to the blockchain, including the corresponding blockchain the data should be sent to 
 according to the defined policies. 
+
+## References
+<a id="1">[1]</a> 
+Lakic, D. (2019). 
+Design and Implementation of a Policy-based Blockchain Selection Framework. 
+Master's thesis, Zürich, Switzerland.
