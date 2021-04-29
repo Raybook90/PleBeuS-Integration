@@ -1,6 +1,6 @@
 # Policy-based Blockchain selection Framework
 
-This is a node.js based web application that allows to define policies for automated blockchain selection. This is an extended version of the framework developed in [[1]](#1). 
+This is a node.js based web application that allows to define policies for automated blockchain selection. This is an extended version of the framework developed in [[1]](#1), which allows it to be used with the ML-based BC selection solution found [here](https://github.com/Raybook90/ml_blockchain_selection).
 
 ## Development
 
