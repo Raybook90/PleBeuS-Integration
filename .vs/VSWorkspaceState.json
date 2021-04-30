@@ -1,10 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+    "\\api",
     "\\business-logic",
     "\\controller",
-    "\\test"
+    "\\docker",
+    "\\docker\\mongo",
+    "\\test",
+    "\\util"
   ],
-  "SelectedNode": "\\docker-compose.yml",
+  "SelectedNode": "\\.env.example",
   "PreviewInSolutionExplorer": false
 }
