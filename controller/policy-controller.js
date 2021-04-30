@@ -95,8 +95,7 @@ module.exports.savePolicy = async (req, res) => {
     }
     
     const providedPolicy = util.buildPolicy(req.body);
-    //Rati test
-    console.log(providedPolicy)
+    //console.log(providedPolicy)
     const user = await UserRepository.getUserByName(providedPolicy.username);
 
     // Check policy interval conflicts

@@ -13,9 +13,7 @@ async function getAllBlockchainCostsPerByte(currency) {
     // const publicBlockchainRates = await ratesAPI.fetchBlockchainCost(currency, publicBlockchainsString);
     const publicBlockchainRates = await ratesAPI.fetchBlockchainCostNOAPI(currency);
     const allBlockchainRates = util.addPrivateRatesToObject(publicBlockchainRates);
-    // console.log(allBlockchainRates);
     const test =  await costCalculator.calculateCosts(allBlockchainRates);
-    // console.log(test);
     return await costCalculator.calculateCosts(allBlockchainRates);
 }
 
@@ -27,13 +25,11 @@ function getCostsForData(costsPerByte, data) {
             const costsForSheet = costCalculator.multiplyWithBytes(costsPerByte, sheetData.sizeString);
             costs.push(costsForSheet);
         });
-        console.log(costs);
         return costs;
     }
 
     const costsForTrxHash = costCalculator.multiplyWithBytes(costsPerByte, data.sizeString);
     costs.push(costsForTrxHash); 
-    console.log(costs);
     return costs;
 
 }
