@@ -42,9 +42,11 @@ function validateForm(data) {
         errors.push('Please provide a cost interval');
     }
 
-    /*if (document.querySelector('input[name=useMachineLearning').value === "true" && data.bcType === 'indifferent') {
-        errors.push('Please provide a blockchain type');
-    }*/
+    if (data.bcType === 'indifferent' && data.interval !== 'default') {
+        if (document.querySelector('input[name=useMachineLearning').value === 'true') {
+            errors.push('Please provide a blockchain type');
+        }
+    }
 
     return errors;
 }
@@ -140,14 +142,12 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
             isHidden = true;
         }      
     }
-    console.log(isHidden);
     if(isHidden){
         document.querySelector('input[name=useMachineLearning').value = "false";
         for (let i = 0; i < to_hide_features.length; ++i) {
             to_hide_features[i].style.display = "block";
         }
         document.querySelector("input[value=indifferent]").disabled = false;
-        console.log('inline-block');
         document.querySelector("#indiffrent-rati").style.display= "inline-block";
         document.querySelector('select[name=bcTps').disabled = false;
         document.querySelector('select[name=bcBlockTime').disabled = false;
@@ -162,8 +162,6 @@ document.querySelector('.extended-button-rati').addEventListener("click", functi
             to_hide_features[i].style.display = "none";
         }
         document.querySelector("input[value=indifferent]").disabled = true;
-
-        console.log('indifrrent none');
         document.querySelector("#indiffrent-rati").style.display= "none";
     }
 }, false);
@@ -175,10 +173,6 @@ function ShowHideDiv() {
         var chkYes = document.getElementById("chkYes");
 
         var turingCompleteRati = document.getElementsByClassName("turing-complete-rati");
-
-        console.log("chkYes",chkYes);
-        console.log("chkYes.checked",chkYes.checked );
-        console.log(turingCompleteRati);
 
         turingCompleteRati[0].style.display = chkYes.checked  ? "block" : "none";
     }   
