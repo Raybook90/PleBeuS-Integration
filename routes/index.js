@@ -4,7 +4,7 @@ const multer = require('multer');
 const policyController = require('../controller/policy-controller');
 const transactionController = require('../controller/transaction-controller');
 const userController = require('../controller/user-controller');
-const mlModelController = require('../controller/ml-model-controller')
+
 
 const upload = multer();
 
@@ -32,7 +32,6 @@ router.get('*', (req, res) => {
 router.post('/api/policies', policyController.savePolicy);
 router.delete('/api/policy/:id', policyController.deletePolicy);
 router.post('/api/transactions', upload.single('xlsxFile'), transactionController.handleTransaction);
-router.post('/api/selection', mlModelController.handleMLSelection);
 ;
 
 module.exports = router;
