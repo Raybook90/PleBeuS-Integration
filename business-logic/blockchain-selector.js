@@ -79,7 +79,7 @@ async function selectBlockchainForTransaction(policy, bcCosts, viableBlockchains
 //Rati Machine Learning Blockchain Selection
 async function selectBlockchainWithMlFromPolicy(policy) {
     if (!policy.preferredBC || policy.preferredBC.length === 0) {
-        //API call to selection endpoint 
+         
         var model = policy.mlModel;
         var type = policy.bcType;
         var smart_contract = policy.bcSmartContract;
@@ -88,7 +88,7 @@ async function selectBlockchainWithMlFromPolicy(policy) {
         var data_size = policy.bcDataSize;
         var platformTransactionSpeed = policy.platformTransactionSpeed;
 
-
+           // transfrom input variables to numeric representation for ML models
            if (type === 'public' || type === 'indifferent') {
                 type = 1;
             } else  {
@@ -124,7 +124,7 @@ async function selectBlockchainWithMlFromPolicy(policy) {
             }
 
 
-        
+        //API call to selection endpoint
         var options = {
             uri:('http://'+process.env.IP_address+':5000/api/predict'),
             method: 'POST',
